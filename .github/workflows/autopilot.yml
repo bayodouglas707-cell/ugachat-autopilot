@@ -1,16 +1,15 @@
-name: UGAChat Autopilot AI Engine
+name: UGAChat Daily Autopilot Publisher
 
 on:
   schedule:
-    # Runs automatically every day at 06:00 UTC (9:00 AM East Africa Time)
-    - cron: '0 6 * * *'
+    - cron: '0 8 * * *'
   workflow_dispatch:
 
 jobs:
   run-autopilot:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -23,7 +22,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Execute Autopilot Engine
+      - name: Execute Autopilot AI Market Engine
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
